@@ -2,7 +2,7 @@ import { MdAlternateEmail } from "react-icons/md";
 import { MdOutlinePassword } from "react-icons/md";
 import img_login from "../assets/img_login.svg"
 import "./Login.css"
-function Login(){
+function Login({ onCadastrar }){
     return(
         <div className="telaLogin">
         <img src={img_login} alt="Imagem login azul" className="imgLogin" />
@@ -19,6 +19,7 @@ function Login(){
 
                 </div>
             <button type="button" className="botaoLogin">Entrar</button>
+            <span className="textoLink" onClick={onCadastrar}>Cadastrar um novo usuário</span>
         </div>
         </div>
     )

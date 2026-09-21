@@ -1,4 +1,4 @@
-.telaLogin{
+.containerCadastrarUsuario{
   min-height: 100vh;
   width: 80%;
   display: flex;
@@ -10,13 +10,13 @@
   margin: 0 auto;
 }
 
-.imgLogin{
+.imgCadastro{
   width: 300px;
   margin: 0 auto;
   height: auto;
 }
 
-.formularioLogin{
+.formularioCadastro{
   width: 100%;
   max-width: 360px;
   display: flex;
@@ -28,7 +28,7 @@
   box-shadow: 0 4px 16px rgba(30, 43, 66, 0.12);
 }
 
-.inputLogin{
+.inputCadastrarUsuario{
   display: flex;
   align-items: center;
   gap: 12px;
@@ -37,13 +37,13 @@
   border-radius: 8px;
 }
 
-.iconViewLogin{
+.iconViewCadastro{
   color: var(--color-primary);
   font-size: 20px;
   flex-shrink: 0;
 }
 
-.inputLogin input{
+.inputCadastrarUsuario input{
   flex: 1;
   border: none;
   outline: none;
@@ -52,7 +52,7 @@
   color: var(--color-primary);
 }
 
-.botaoLogin{
+.botaoCadastro{
   padding: 12px;
   border: none;
   border-radius: 8px;
@@ -64,17 +64,18 @@
   cursor: pointer;
 }
 
-.botaoLogin:hover{
+.botaoCadastro:hover{
   opacity: 0.9;
 }
 
 .textoLink{
   color: var(--color-primary-lighter);
-  text-align: center;
+  font-size: 32px;
+  align-self: center;
   cursor: pointer;
-  text-decoration: underline;
 }
 
 .textoLink:hover{
   opacity: 0.8;
 }
+/* login */
