@@ -1,18 +1,24 @@
 
-import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import CadastrarUsuario from './pages/CadastrarUsuario'
+import Menu from './pages/Menu'
+import PainelProduto from './paineis/PainelProduto'
+import PainelCategoria from './paineis/PainelCategoria'
 import './App.css'
 
 function App() {
-  const [tela, setTela] = useState('login')
-
   return (
-   <>
-   {tela === 'login'
-     ? <Login onCadastrar={() => setTela('cadastro')} />
-     : <CadastrarUsuario onVoltar={() => setTela('login')} />}
-   </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/cadastrar" element={<CadastrarUsuario />} />
+        <Route path="/menu" element={<Menu />}>
+          <Route index element={<PainelProduto />} />
+          <Route path="categoria" element={<PainelCategoria />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

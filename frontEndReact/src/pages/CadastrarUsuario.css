@@ -70,12 +70,22 @@
 
 .textoLink{
   color: var(--color-primary-lighter);
-  font-size: 32px;
-  align-self: center;
+  font-size: 22px;
   cursor: pointer;
 }
 
-.textoLink:hover{
+.botaoVoltar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  align-self: center;
+  color: var(--color-primary-lighter);
+  cursor: pointer;
+}
+
+.botaoVoltar:hover{
   opacity: 0.8;
+  background-color: var(--color-secondary);
 }
 /* login */
