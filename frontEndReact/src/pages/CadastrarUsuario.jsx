@@ -1,50 +1,96 @@
+import { MdDriveFileRenameOutline } from "react-icons/md";
+import { MdAlternateEmail } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { IoChevronBackCircle } from "react-icons/io5";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MdPerson } from "react-icons/md";
-import { MdAlternateEmail } from "react-icons/md";
-import { MdOutlinePassword } from "react-icons/md";
-import { IoArrowBackCircleSharp } from "react-icons/io5";
-import img_login from "../assets/img_login.svg"
+
 import "./CadastrarUsuario.css"
+
 function CadastrarUsuario(){
-    const navigate = useNavigate()
-    const [nome, setNome] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+
+    const navegation=useNavigate()
+
+    function handleVoltar(){
+        navegation("/")
+    }
+
+    const [nome,setNome]=useState("");
+    const [email,setEmail]=useState("");
+    const [senha,setSenha]=useState("");
+
+    async function handleCadastrar(e){
+        e.preventDefault()
+        if(!nome || !email || !senha){
+            alert("Preencha todos os campos")
+            return
+        }
+        try {
+            const response = await fetch("http://localhost:3000/api/usuario", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nome, email, senha })
+            })
+            if(response.ok){
+                alert("Usuário cadastrado com sucesso")
+                navegation("/")
+            } else {
+                const erro = await response.json()
+                alert(erro.message || "Erro ao cadastrar usuário")
+            }
+        } catch (error) {
+            alert("Erro ao conectar com o servidor")
+        }
+    }
+
     return(
         <div className="containerCadastrarUsuario">
-        <img src={img_login} alt="Imagem login azul" className="imgCadastro" />
-        <form className="formularioCadastro">
-            <div className="inputCadastrarUsuario">
-            <MdPerson className="iconViewCadastro" />
-                <input type="text" name="nome" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+            <form onSubmit={handleCadastrar}>
+                <div className="inputCadastrarUsuario">
+                    <MdDriveFileRenameOutline className="iconCadastrar" />
 
-            </div>
-            <div className="inputCadastrarUsuario">
-            <MdAlternateEmail className="iconViewCadastro" />
-                <input type="email" name="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-
-            </div>
-            <div className="inputCadastrarUsuario">
-            <MdOutlinePassword className="iconViewCadastro" />
-            <input type="password" name="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} />
-
-
+                    <input
+                     type="text"
+                     placeholder="Nome"
+                     value={nome}
+                     onChange={(v)=> setNome(v.target.value)
+                     }
+                     />
                 </div>
-            <div className="inputCadastrarUsuario">
-            <MdOutlinePassword className="iconViewCadastro" />
-            <input type="password" name="confirmarSenha" placeholder="Confirmar senha" />
 
-
+                <div className="inputCadastrarUsuario">
+                    <MdAlternateEmail  className="iconCadastrar" />
+                    <input
+                    type="email"
+                     placeholder="Email"
+                     value={email}
+                     onChange={(e)=> setEmail(e.target.value)}
+                     />
                 </div>
-            <button type="button" className="botaoCadastro">Cadastrar</button>
-            <div className="botaoVoltar" onClick={() => navigate("/")}>
-                <IoArrowBackCircleSharp className="textoLink" />
-                <span>Já tem uma conta? Entrar</span>
-            </div>
-        </form>
+
+                <div className="inputCadastrarUsuario">
+                    <RiLockPasswordLine className="iconCadastrar"  />
+                    <input
+                    type="password"
+                    placeholder="Senha"
+                    value={senha}
+                    onChange={(e)=> setSenha(e.target.value)}
+                    />
+                </div>
+
+                <div className="navegacaoCadastrarUsuario">
+                    <IoChevronBackCircle className="voltar"  onClick={handleVoltar} />
+                    <button type="submit">Cadastrar</button>
+                </div>
+
+
+            </form>
+
+
         </div>
     )
+
 }
 
-export default CadastrarUsuario
+
+export default CadastrarUsuario;

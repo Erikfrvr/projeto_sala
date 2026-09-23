@@ -8,7 +8,7 @@
         this.nome = nome;
     }
 
-    getId():number{
+    getId():number | undefined{
         return this.id;
     }
 

@@ -2,16 +2,34 @@
     background-color: var(--color-primary);
     color: var(--color-white);
     height: 100vh;
-    width: 120px;
-    padding: 7px;
+    width: 200px;
+    padding: 24px 12px;
+    font-family: var(--font-family-roboto);
+}
 
+.sideBar ul{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .sideBar ul li{
- margin: 10px;
-cursor:pointer;
-display: flex;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease, transform 0.15s ease;
 }
-.sideBar ul li p:hover{
-    color: green;
+
+.sideBar ul li svg{
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.sideBar ul li:hover{
+    background-color: var(--color-secondary);
+    transform: translateX(4px);
 }

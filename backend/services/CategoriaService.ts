@@ -1,6 +1,7 @@
 import { Categoria } from "../models/entidade/Categoria";
 import { ListarCategoriaDTO } from "../models/dto/categoria/ListarCategoriaDTO";
 import { CadastrarCategoriaDTO } from "../models/dto/categoria/CadastrarCategoriaDTO";
+import { AtualizarCategoriaDTO } from "../models/dto/categoria/AtualizarCategoriaDTO";
 import categoriaInfrastructure from "../infrastructure/categoriaInfrasctructure";
 
 class CategoriaService{
@@ -41,7 +42,7 @@ class CategoriaService{
         }
 
         // A partir daqui eu vou trabalhar as regras de negocio de categoria
-        const categoria = new Categoria(categoriaDTO.nome);
+        const categoria = new Categoria(0, this.tratarNome(categoriaDTO.nome));
         const id = await categoriaInfrastructure.criarCategoria(categoria);
         
 
@@ -99,14 +100,56 @@ class CategoriaService{
 
         return  categoriaResponseDTO ;
 
-    }catch (erro) {     
+    }catch (erro) {
 
         throw new Error(`Erro ao buscar categoria: ${erro.message}`);
 
    }
-   
 
-}
+   }
+
+   async atualizarCategoria(id: number, categoriaDTO: AtualizarCategoriaDTO): Promise<ListarCategoriaDTO> {
+    try{
+        const categoriaExistente = await categoriaInfrastructure.buscarCategoriaPorId(id);
+
+        if(categoriaExistente.length === 0){
+            throw new Error('Categoria não encontrada');
+        }
+
+        const nomeAtualizado = categoriaDTO.nome ? this.tratarNome(categoriaDTO.nome) : categoriaExistente[0].nome_categoria;
+
+        const categoria = new Categoria(id, nomeAtualizado);
+        await categoriaInfrastructure.atualizarCategoria(id, categoria);
+
+        const categoriaResponseDTO:ListarCategoriaDTO={
+                id: id,
+                nome: nomeAtualizado
+        }
+
+        return  categoriaResponseDTO ;
+
+    }catch (erro) {
+
+        throw new Error(`Erro ao atualizar categoria: ${erro.message}`);
+    }
+   }
+
+   async deletarCategoria(id: number): Promise<void> {
+    try{
+        const categoriaExistente = await categoriaInfrastructure.buscarCategoriaPorId(id);
+
+        if(categoriaExistente.length === 0){
+            throw new Error('Categoria não encontrada');
+        }
+
+        await categoriaInfrastructure.deletarCategoria(id);
+
+    }catch (erro) {
+
+        throw new Error(`Erro ao deletar categoria: ${erro.message}`);
+    }
+   }
+
 }
 
 const categoriaService = new CategoriaService();

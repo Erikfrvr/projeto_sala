@@ -8,15 +8,15 @@ class Usuario{
     private email: Email;
     private senha: Senha;
 
-    constructor(nome: string, email: string, senha: string, id?: number) {
+    constructor(nome: string, email: string, senha: string, id?: number, validarSenha: boolean = true) {
         this.nome = nome;
         this.email =  new Email(email);
-        this.senha = new Senha(senha);
+        this.senha = new Senha(senha, validarSenha);
         if (id) {
             this.id = id;
         }
 
-    }   
+    }
     public getEmail(): Email {
         return this.email;
     }

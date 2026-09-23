@@ -1,0 +1,86 @@
+.telaUsuario{
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.painelUsuario{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(30, 43, 66, 0.12);
+}
+
+.painelUsuario input{
+  padding: 10px 12px;
+  border: 1px solid var(--color-primary-lighter);
+  border-radius: 8px;
+  outline: none;
+  font-family: var(--font-family-roboto);
+  font-size: 16px;
+  color: var(--color-primary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.painelUsuario input:focus{
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(30, 43, 66, 0.1);
+}
+
+.painelUsuario button{
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-secondary);
+  color: #FFFFFF;
+  font-family: var(--font-family-roboto);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.painelUsuario button:hover{
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.tabelaUsuario{
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(30, 43, 66, 0.12);
+  font-family: var(--font-family-roboto);
+}
+
+.tabelaUsuario thead{
+  background-color: var(--color-primary);
+}
+
+.tabelaUsuario th{
+  color: #FFFFFF;
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.tabelaUsuario td{
+  padding: 12px 16px;
+  color: var(--color-primary);
+  font-size: 15px;
+  border-top: 1px solid rgba(30, 43, 66, 0.08);
+}
+
+.tabelaUsuario tbody tr:hover{
+  background-color: rgba(30, 43, 66, 0.04);
+}

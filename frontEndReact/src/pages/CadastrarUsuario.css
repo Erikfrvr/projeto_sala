@@ -5,18 +5,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 32px;
   padding: 24px;
   margin: 0 auto;
 }
 
-.imgCadastro{
-  width: 300px;
-  margin: 0 auto;
-  height: auto;
-}
-
-.formularioCadastro{
+.containerCadastrarUsuario form{
   width: 100%;
   max-width: 360px;
   display: flex;
@@ -35,9 +28,15 @@
   padding: 10px 12px;
   border: 1px solid var(--color-primary-lighter);
   border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.iconViewCadastro{
+.inputCadastrarUsuario:focus-within{
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(30, 43, 66, 0.1);
+}
+
+.iconCadastrar{
   color: var(--color-primary);
   font-size: 20px;
   flex-shrink: 0;
@@ -52,7 +51,26 @@
   color: var(--color-primary);
 }
 
-.botaoCadastro{
+.navegacaoCadastrarUsuario{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.voltar{
+  color: var(--color-primary-lighter);
+  font-size: 28px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.voltar:hover{
+  color: var(--color-secondary);
+}
+
+.navegacaoCadastrarUsuario button{
+  flex: 1;
   padding: 12px;
   border: none;
   border-radius: 8px;
@@ -62,30 +80,10 @@
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
 }
 
-.botaoCadastro:hover{
+.navegacaoCadastrarUsuario button:hover{
   opacity: 0.9;
+  transform: translateY(-1px);
 }
-
-.textoLink{
-  color: var(--color-primary-lighter);
-  font-size: 22px;
-  cursor: pointer;
-}
-
-.botaoVoltar{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  align-self: center;
-  color: var(--color-primary-lighter);
-  cursor: pointer;
-}
-
-.botaoVoltar:hover{
-  opacity: 0.8;
-  background-color: var(--color-secondary);
-}
-/* login */

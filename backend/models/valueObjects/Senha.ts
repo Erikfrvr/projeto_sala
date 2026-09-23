@@ -1,8 +1,8 @@
 class Senha {
     private senha: string;
 
-    constructor(senha: string) {
-        if (!this.validadorSenha(senha)) {
+    constructor(senha: string, validar: boolean = true) {
+        if (validar && !this.validadorSenha(senha)) {
             throw new Error('Senha inválida. A senha deve conter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.');
         }
         this.senha = senha;

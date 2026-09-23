@@ -4,13 +4,10 @@ import { FaRegUserCircle } from "react-icons/fa";
 import "./Sidebar.css"
 import { useNavigate } from "react-router-dom";
 
-function handleChangeRoute(e){
-    console.log(e.target)
-}
 function Sidebar(){
     const navegation=useNavigate()
-    function handleChangeRoute(e){  
-        switch(e.target.id){
+    function handleChangeRoute(e){
+        switch(e.currentTarget.id){
             case "produto":
                 navegation("/menu")
                 break
@@ -18,7 +15,7 @@ function Sidebar(){
                 navegation("/menu/categoria")
                 break
             case "usuario":
-                navegation("/cadastrar")
+                navegation("/menu/usuario")
                 break
             default:
                 break
@@ -27,9 +24,9 @@ function Sidebar(){
     return (
         <div className="sideBar">
             <ul>
-                <li id="produto" onCLick={handleChangeRoute}><FaBox /><p> Produto</p></li>
-                <li id="categoria" onCLick={handleChangeRoute}><BiCategory /><p> Categoria</p></li>
-                <li id='usuario' onCLick={handleChangeRoute}><FaRegUserCircle /><p>Usuario</p></li>
+                <li id="produto" onClick={handleChangeRoute}><FaBox /><p>Produto</p></li>
+                <li id="categoria" onClick={handleChangeRoute}><BiCategory /><p>Categoria</p></li>
+                <li id='usuario' onClick={handleChangeRoute}><FaRegUserCircle /><p>Usuario</p></li>
             </ul>
         </div>
     )

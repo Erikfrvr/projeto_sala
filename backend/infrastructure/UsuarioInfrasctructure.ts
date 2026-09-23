@@ -29,7 +29,7 @@ class UsuarioInfrastructure implements UsuarioRepository  {
                 const [rows] = await connection.query(query, [email]);
                 if (Array.isArray(rows) && rows.length > 0) {
                     const row: any = rows[0];
-                    return new Usuario(row.nome, row.email, row.senha, row.id);
+                    return new Usuario(row.nome, row.email, row.senha, row.id, false);
                 } else {
                     return null;
                 }
@@ -55,7 +55,8 @@ class UsuarioInfrastructure implements UsuarioRepository  {
                     usuario.nome,
                     usuario.email,
                     usuario.senha,
-                    usuario.id
+                    usuario.id,
+                    false
                 );
             });
 

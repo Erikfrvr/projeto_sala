@@ -51,8 +51,8 @@ async listarCategorias(): Promise<any> {
         connection.release();
     }
    }
-   async buscarCategoriaPorId(id: number): Promise<any> {   
-    
+   async buscarCategoriaPorId(id: number): Promise<any> {
+
         const connection = await pool.getConnection();
         try {
             const [categoria] = await connection.query<RowDataPacket[]>(
@@ -66,7 +66,31 @@ async listarCategorias(): Promise<any> {
 
    }
 
+   async atualizarCategoria(id: number, categoria: Categoria): Promise<boolean> {
+        const connection = await pool.getConnection();
+        try {
+            const [result] = await connection.query<ResultSetHeader>(
+                'UPDATE categorias SET nome_categoria = ? WHERE id = ?',
+                [categoria.getNome(), id]
+            );
+            return result.affectedRows > 0;
+        } finally {
+            connection.release();
+        }
+   }
 
+   async deletarCategoria(id: number): Promise<boolean> {
+        const connection = await pool.getConnection();
+        try {
+            const [result] = await connection.query<ResultSetHeader>(
+                'DELETE FROM categorias WHERE id = ?',
+                [id]
+            );
+            return result.affectedRows > 0;
+        } finally {
+            connection.release();
+        }
+   }
 
 }
 const categoriaInfrastructure = new CategoriaInfrastructure();
